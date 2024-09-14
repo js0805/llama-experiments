@@ -1,4 +1,4 @@
 llama_index
 streamlit
 llama-index-llms-ollama
-flask
+llama3
