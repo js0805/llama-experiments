@@ -1,4 +1,5 @@
 import streamlit as st
+import os
 from llama_index.core.llms import ChatMessage
 import logging
 import time
@@ -6,12 +7,16 @@ from llama_index.llms.ollama import Ollama
 
 logging.basicConfig(level=logging.INFO)
 
+# Retrieve model configuration from environment variables
+model_address = os.getenv('MODEL_ADDRESS', 'default_address')
+model_port = os.getenv('MODEL_PORT', 'default_port')
+
 if 'messages' not in st.session_state:
     st.session_state.messages = []
 
 def stream_chat(model, messages):
     try:
-        llm = Ollama(model=model, request_timeout=120.0)
+        llm = Ollama(model=model, request_timeout=120.0, address=model_address, port=model_port)
         resp = llm.stream_chat(messages)
         response = ""
         response_placeholder = st.empty()
