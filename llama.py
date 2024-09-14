@@ -3,12 +3,16 @@ from llama_index.core.llms import ChatMessage
 import logging
 import time
 from llama_index.llms.ollama import Ollama
+import pip
 
 logging.basicConfig(level=logging.INFO)
 
 if 'messages' not in st.session_state:
     st.session_state.messages = []
 
+
+def install_package(package):
+    pip.main(['install', package])
 
 def stream_chat(model, messages):
     try:
@@ -26,6 +30,7 @@ def stream_chat(model, messages):
         raise e
 
 def main():
+    install_package('llama_index')
     st.title("Chat with LLMs Models")
     logging.info("App started")
 
