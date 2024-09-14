@@ -1,5 +1,4 @@
 llama_index
 streamlit
 llama-index-llms-ollama
-llama3
 transformers 
